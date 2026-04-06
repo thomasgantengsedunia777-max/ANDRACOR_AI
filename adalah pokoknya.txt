@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Tuan</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #0f172a;
+    color: white;
+    text-align: center;
+}
+
+.container {
+    max-width: 400px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.chat-box {
+    height: 300px;
+    overflow-y: auto;
+    border: 1px solid #334155;
+    padding: 10px;
+    border-radius: 10px;
+    background: #020617;
+}
+
+input {
+    width: 70%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+}
+
+button {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background: #22c55e;
+    color: white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>🤖 AI Tuan</h2>
+    <div class="chat-box" id="chat"></div>
+    <br>
+    <input type="text" id="input" placeholder="Ketik pesan...">
+    <button onclick="kirim()">Kirim</button>
+</div>
+
+<script>
+function ai(input){
+    input = input.toLowerCase();
+
+    if(input.includes("halo") || input.includes("hai"))
+        return "Halo Tuan 🧑‍💻🧑‍💻";
+
+    if(input.includes("siapa kamu"))
+        return "Saya AI buatan Tuan 😎";
+
+    if(input.includes("apa kabar"))
+        return "Saya selalu siap melayani Tuan";
+
+    if(input.includes("jam")){
+        let now = new Date();
+        return "Sekarang jam: " + now.toLocaleTimeString();
+    }
+
+    if(input.includes("+") || input.includes("-") || input.includes("*") || input.includes("/")){
+        try {
+            return "Hasil: " + eval(input);
+        } catch {
+            return "Saya tidak mengerti";
+        }
+    }
+
+    let random = [
+        "Menarik 🤔",
+        "Coba jelasin lagi",
+        "Saya masih belajar",
+        "Oke Tuan"
+    ];
+
+    return random[Math.floor(Math.random() * random.length)];
+}
+
+function kirim(){
+    let input = document.getElementById("input").value;
+    let chat = document.getElementById("chat");
+
+    if(input === "") return;
+
+    chat.innerHTML += "<p><b>Tuan:</b> " + input + "</p>";
+    chat.innerHTML += "<p><b>AI:</b> " + ai(input) + "</p>";
+
+    document.getElementById("input").value = "";
+    chat.scrollTop = chat.scrollHeight;
+}
+</script>
+
+</body>
+</html>
