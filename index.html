@@ -1,0 +1,58 @@
+function ai(input){
+    input = input.toLowerCase();
+
+    // sapaan
+    if(input.includes("halo") || input.includes("hai"))
+        return "Halo Tuan 🧑‍💻🧑‍💻, ada yang bisa saya bantu?";
+
+    // identitas
+    if(input.includes("siapa kamu"))
+        return "Saya adalah AI buatan Tuan yang sedang berkembang 😎";
+
+    // kabar
+    if(input.includes("apa kabar"))
+        return "Saya selalu siap melayani Tuan!";
+
+    // waktu
+    if(input.includes("jam") || input.includes("waktu")){
+        let now = new Date();
+        return "Sekarang jam: " + now.toLocaleTimeString();
+    }
+
+    // tanggal
+    if(input.includes("tanggal")){
+        let now = new Date();
+        return "Hari ini: " + now.toLocaleDateString();
+    }
+
+    // hitung sederhana
+    if(input.includes("+") || input.includes("-") || input.includes("*") || input.includes("/")){
+        try {
+            let hasil = eval(input);
+            return "Hasilnya: " + hasil;
+        } catch {
+            return "Saya tidak mengerti perhitungan itu, Tuan";
+        }
+    }
+
+    // perasaan
+    if(input.includes("sedih"))
+        return "Jangan sedih Tuan 😢, saya di sini untuk menemani";
+
+    if(input.includes("senang"))
+        return "Senang melihat Tuan bahagia 😄";
+
+    // pertanyaan umum
+    if(input.includes("apa itu ai"))
+        return "AI adalah kecerdasan buatan yang bisa berpikir dan belajar seperti manusia";
+
+    // fallback random biar terasa hidup
+    let random = [
+        "Menarik, coba jelaskan lebih lanjut Tuan 🤔",
+        "Saya sedang belajar memahami itu 🧠",
+        "Bisa dijelaskan lebih detail?",
+        "Saya akan mencoba menjawab lebih baik nanti 🚀"
+    ];
+
+    return random[Math.floor(Math.random() * random.length)];
+}
